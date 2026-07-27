@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" fill="none" role="img" aria-label="Primotech">
+  <g transform="translate(4 4) scale(0.52)">
+    <path
+      d="M34 28 C38 18 48 12 60 12 C72 12 82 18 86 28 M38 52 C42 46 48 44 52 48 M68 48 C72 44 78 46 82 52 M52 58 L58 92 C60 98 64 102 68 98 M46 108 C54 114 66 114 74 108"
+      stroke="url(#face-g)"
+      stroke-width="5.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M28 36 C22 52 22 72 28 88 C34 104 46 118 60 122 C74 118 86 104 92 88 C98 72 98 52 92 36"
+      stroke="url(#face-g)"
+      stroke-width="5.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+  <text
+    x="88"
+    y="54"
+    fill="url(#text-g)"
+    font-family="Archivo Black, Arial Black, sans-serif"
+    font-size="42"
+    font-weight="900"
+    letter-spacing="1"
+  >
+    PRIMOTECH
+  </text>
+  <defs>
+    <linearGradient id="face-g" x1="24" y1="12" x2="96" y2="122" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF8800"/>
+      <stop offset="1" stop-color="#FF6A00"/>
+    </linearGradient>
+    <linearGradient id="text-g" x1="88" y1="20" x2="400" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF443A"/>
+      <stop offset="1" stop-color="#FF6A00"/>
+    </linearGradient>
+  </defs>
+</svg>

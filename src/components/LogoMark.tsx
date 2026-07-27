@@ -1,0 +1,70 @@
+type LogoMarkProps = {
+  size?: number
+  className?: string
+}
+
+/** Primotech face mark — transparent background, vector line art */
+export function LogoMark({ size = 36, className = '' }: LogoMarkProps) {
+  const gradientId = `mark-gradient-${size}`
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 120 140"
+      width={size}
+      height={size}
+      fill="none"
+      aria-hidden="true"
+      className={`logo-mark shrink-0 ${className}`}
+    >
+      <path
+        d="M36 24 L42 14 L50 18 L58 10 L66 16 L74 8 L82 16 L88 24"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="5.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M38 52 C42 46 48 44 52 48 M68 48 C72 44 78 46 82 52"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="5.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M54 56 L58 94 C60 100 66 102 70 96"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="5.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M46 108 C54 116 66 116 74 108"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="5.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M28 38 C22 54 22 74 28 90 C34 106 46 120 60 124 C74 120 86 106 92 90 C98 74 98 54 92 38"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="5.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="24"
+          y1="10"
+          x2="96"
+          y2="124"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#FF8800" />
+          <stop offset="1" stopColor="#FF6A00" />
+        </linearGradient>
+      </defs>
+    </svg>
+  )
+}
