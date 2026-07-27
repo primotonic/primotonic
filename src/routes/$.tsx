@@ -5,8 +5,13 @@ export const Route = createFileRoute('/$')({
   head: () =>
     pageHead({
       title: 'Not found',
-      description: 'This page does not exist.',
+      description: 'This page does not exist on Primotonic.',
       path: '/404',
+      noIndex: true,
+      breadcrumbs: [
+        { name: 'Home', path: '/' },
+        { name: 'Not found', path: '/404' },
+      ],
     }),
   component: NotFoundPage,
 })

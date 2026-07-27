@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { services } from '#/content/services'
+import { Breadcrumbs } from '#/components/Breadcrumbs'
 import { pageHead } from '#/lib/seo'
 
 export const Route = createFileRoute('/services')({
@@ -7,8 +8,12 @@ export const Route = createFileRoute('/services')({
     pageHead({
       title: 'Services',
       description:
-        'Web development, mobile apps, technical support, and web pentesting from Primotech — plus internal systems that replace costly tools.',
+        'Web development, mobile apps, technical support, and web pentesting from Primotonic — plus internal systems that replace costly tools.',
       path: '/services',
+      breadcrumbs: [
+        { name: 'Home', path: '/' },
+        { name: 'Services', path: '/services' },
+      ],
     }),
   component: ServicesPage,
 })
@@ -17,6 +22,13 @@ function ServicesPage() {
   return (
     <main className="section-block">
       <div className="page-wrap px-4">
+        <Breadcrumbs
+          className="mb-5"
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Services', path: '/services' },
+          ]}
+        />
         <p className="section-kicker mb-3">Services</p>
         <h1 className="display-title m-0 max-w-3xl text-[clamp(1.85rem,3.5vw,2.6rem)] font-bold text-[var(--ink)]">
           Full-stack build, ship, and secure

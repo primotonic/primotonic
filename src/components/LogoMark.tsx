@@ -3,7 +3,7 @@ type LogoMarkProps = {
   className?: string
 }
 
-/** Primotech face mark — transparent background, vector line art */
+/** Primotonic face mark — transparent background, vector line art */
 export function LogoMark({ size = 36, className = '' }: LogoMarkProps) {
   const gradientId = `mark-gradient-${size}`
 

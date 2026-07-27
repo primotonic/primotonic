@@ -2,6 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { site } from '#/content/site'
+import { absoluteUrl, OG_IMAGE } from '#/lib/seo'
 import appCss from '../styles.css?url'
 
 export const Route = createRootRoute({
@@ -12,11 +13,22 @@ export const Route = createRootRoute({
       { title: site.name },
       { name: 'description', content: site.description },
       { name: 'theme-color', content: '#FF6A00' },
+      { name: 'msapplication-TileColor', content: '#FF6A00' },
+      { name: 'format-detection', content: 'telephone=no' },
+      { name: 'application-name', content: site.name },
+      { name: 'apple-mobile-web-app-title', content: site.name },
+      { name: 'apple-mobile-web-app-capable', content: 'yes' },
+      { property: 'og:site_name', content: site.name },
+      { property: 'og:locale', content: site.locale },
+      { property: 'og:image', content: absoluteUrl(OG_IMAGE) },
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
-      { rel: 'icon', href: '/logo-face.svg', type: 'image/svg+xml' },
-      { rel: 'apple-touch-icon', href: '/logo-face.svg' },
+      { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
+      { rel: 'icon', href: '/logo-face.png', type: 'image/png' },
+      { rel: 'apple-touch-icon', href: '/logo-face.png' },
+      { rel: 'manifest', href: '/site.webmanifest' },
+      { rel: 'mask-icon', href: '/logo-face.svg', color: '#FF6A00' },
     ],
   }),
   shellComponent: RootDocument,
@@ -24,7 +36,7 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en-PH">
       <head>
         <HeadContent />
       </head>

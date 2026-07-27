@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { caseStudies } from '#/content/case-studies'
+import { Breadcrumbs } from '#/components/Breadcrumbs'
 import { pageHead } from '#/lib/seo'
 
 export const Route = createFileRoute('/work')({
@@ -7,8 +8,12 @@ export const Route = createFileRoute('/work')({
     pageHead({
       title: 'Work',
       description:
-        'Case studies from Primotech — full-stack systems, ops platforms, and confidential iGaming work under NDA.',
+        'Case studies from Primotonic — full-stack systems, banking ops, government-approved iGaming platforms, and confidential engagements.',
       path: '/work',
+      breadcrumbs: [
+        { name: 'Home', path: '/' },
+        { name: 'Work', path: '/work' },
+      ],
     }),
   component: WorkPage,
 })
@@ -17,6 +22,13 @@ function WorkPage() {
   return (
     <main className="section-block">
       <div className="page-wrap px-4">
+        <Breadcrumbs
+          className="mb-5"
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Work', path: '/work' },
+          ]}
+        />
         <p className="section-kicker mb-3">Work</p>
         <h1 className="display-title m-0 max-w-3xl text-[clamp(1.85rem,3.5vw,2.6rem)] font-bold text-[var(--ink)]">
           Full-stack systems that shipped

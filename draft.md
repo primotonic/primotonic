@@ -1,6 +1,6 @@
-# Primotech Business Platform — Draft Brief (v1)
+# Primotonic Business Platform — Draft Brief (v1)
 
-Living brief for the Primotech marketing site + light lead tooling.
+Living brief for the Primotonic marketing site + light lead tooling.
 
 ---
 
@@ -8,11 +8,11 @@ Living brief for the Primotech marketing site + light lead tooling.
 
 | Item | Decision |
 |------|----------|
-| Public name | **Primotech** |
-| Social | `@Primotech` |
+| Public name | **Primotonic** |
+| Social | `@Primotonic` |
 | Mark | Orange continuous-line face icon |
 | Wordmark | Bold geometric caps + face lockup |
-| Note | Legacy “PRIMOTONIC” lockup unified to **Primotech** for messaging |
+| Note | Brand + domain: **Primotonic** (`primotonic.com`) |
 
 ### Design tokens
 
@@ -89,7 +89,7 @@ Differentiators from the team: internal systems that replace SaaS, secure backen
 
 ## Homepage wire
 
-1. **Hero** — Primotech lockup (brand-first), one headline, one sentence, CTAs: Start a project / See our work
+1. **Hero** — Primotonic lockup (brand-first), one headline, one sentence, CTAs: Start a project / See our work
 2. **Outcomes strip** — Aggregate metrics (single row)
 3. **Services** — Staggered three pillars
 4. **Selected work** — 2–3 case teasers → `/work`

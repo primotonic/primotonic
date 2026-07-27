@@ -40,6 +40,33 @@ export default function Footer() {
             </a>
           </p>
           <p className="mt-1.5 text-sm">{site.social.handle}</p>
+          {site.social.profiles.length > 0 ? (
+            <ul className="mt-2.5 m-0 flex list-none flex-col gap-1.5 p-0 text-sm font-semibold">
+              {site.social.profiles.map((href) => {
+                const label = href.includes('linkedin')
+                  ? 'LinkedIn'
+                  : href.includes('facebook')
+                    ? 'Facebook'
+                    : href.includes('twitter') || href.includes('x.com')
+                      ? 'X / Twitter'
+                      : href.includes('github')
+                        ? 'GitHub'
+                        : 'Social'
+                return (
+                  <li key={href}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer me"
+                      className="text-[var(--ink)] no-underline hover:text-[var(--brand-primary)]"
+                    >
+                      {label}
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          ) : null}
           <Link to="/contact" className="btn-primary mt-4 inline-flex">
             Start a project
           </Link>

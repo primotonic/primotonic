@@ -1,6 +1,6 @@
-# Primotech
+# Primotonic
 
-Marketing site + project inquiry for the Primotech engineering team.
+Marketing site + project inquiry for the Primotonic engineering team.
 
 ## Stack
 

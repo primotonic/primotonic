@@ -27,7 +27,7 @@ export function Logo({
       </span>
       {showWordmark ? (
         <span className={`logo-wordmark font-display font-bold ${s.text}`}>
-          PRIMOTECH
+          PRIMOTONIC
         </span>
       ) : null}
     </span>
@@ -36,7 +36,7 @@ export function Logo({
 
 export function LogoLink({ size = 'md' }: { size?: 'sm' | 'md' }) {
   return (
-    <Link to="/" className="inline-flex no-underline" aria-label="Primotech home">
+    <Link to="/" className="inline-flex no-underline" aria-label="Primotonic home">
       <Logo size={size} />
     </Link>
   )

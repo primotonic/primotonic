@@ -11,7 +11,13 @@ import { pageHead } from '#/lib/seo'
 import { site } from '#/content/site'
 
 export const Route = createFileRoute('/')({
-  head: () => pageHead({ title: site.name, path: '/' }),
+  head: () =>
+    pageHead({
+      title: site.name,
+      description: site.description,
+      path: '/',
+      breadcrumbs: [{ name: 'Home', path: '/' }],
+    }),
   component: HomePage,
 })
 
@@ -60,7 +66,7 @@ function HomePage() {
           <SectionIntro
             className="mb-8"
             kicker="Team"
-            title="The engineers behind Primotech"
+            title="The engineers behind Primotonic"
             description="Full-stack systems, secure backends, and product craft — one Philippines-based team."
           />
           <TeamPreview />

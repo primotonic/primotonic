@@ -76,7 +76,7 @@ export function writeSitemapFiles(publicDir: string, host = site.url) {
 }
 
 /** Vite plugin: regenerates sitemap + robots from site.ts on build/dev. */
-export function primotechSitemapPlugin(): Plugin {
+export function primotonicSitemapPlugin(): Plugin {
   const publicDir = resolve(process.cwd(), 'public')
   const siteFile = resolve(process.cwd(), 'src/content/site.ts')
 
@@ -85,7 +85,7 @@ export function primotechSitemapPlugin(): Plugin {
   }
 
   return {
-    name: 'primotech-sitemap',
+    name: 'primotonic-sitemap',
     buildStart() {
       regenerate()
     },

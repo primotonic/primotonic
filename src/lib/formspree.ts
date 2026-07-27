@@ -6,7 +6,7 @@ export async function submitFormspree(
   const formId = import.meta.env.VITE_FORMSPREE_ID as string | undefined
 
   if (!formId) {
-    console.info('[Primotech] Formspree not configured. Payload:', data)
+    console.info('[Primotonic] Formspree not configured. Payload:', data)
     return { ok: true }
   }
 

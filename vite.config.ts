@@ -6,13 +6,13 @@ import netlify from '@netlify/vite-plugin-tanstack-start'
 import { site } from './src/content/site'
 import {
   getSitemapEntries,
-  primotechSitemapPlugin,
+  primotonicSitemapPlugin,
 } from './src/lib/sitemap'
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
   plugins: [
-    primotechSitemapPlugin(),
+    primotonicSitemapPlugin(),
     netlify(),
     tailwindcss(),
     tanstackStart({

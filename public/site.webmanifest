@@ -1,0 +1,24 @@
+{
+  "name": "Primotonic",
+  "short_name": "Primotonic",
+  "description": "Full-stack engineering for web, apps, ops systems, and security — Philippines-based team.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf6f0",
+  "theme_color": "#ff6a00",
+  "lang": "en-PH",
+  "icons": [
+    {
+      "src": "/logo-face.png",
+      "sizes": "320x352",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo-face.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

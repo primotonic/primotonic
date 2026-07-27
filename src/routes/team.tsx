@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { team } from '#/content/team'
+import { Breadcrumbs } from '#/components/Breadcrumbs'
 import { pageHead } from '#/lib/seo'
 
 export const Route = createFileRoute('/team')({
@@ -7,8 +8,12 @@ export const Route = createFileRoute('/team')({
     pageHead({
       title: 'Team',
       description:
-        'Meet the Primotech team — Melquizedek Felix, Von Aralar, and Rojhon Buenaventura.',
+        'Meet the Primotonic team — Melquizedek Felix, Von Aralar, and Rojhon Buenaventura. Philippines-based full-stack engineers.',
       path: '/team',
+      breadcrumbs: [
+        { name: 'Home', path: '/' },
+        { name: 'Team', path: '/team' },
+      ],
     }),
   component: TeamPage,
 })
@@ -17,6 +22,13 @@ function TeamPage() {
   return (
     <main className="section-block">
       <div className="page-wrap px-4">
+        <Breadcrumbs
+          className="mb-5"
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Team', path: '/team' },
+          ]}
+        />
         <p className="section-kicker mb-3">Team</p>
         <h1 className="display-title m-0 max-w-3xl text-[clamp(1.85rem,3.5vw,2.6rem)] font-bold text-[var(--ink)]">
           People you will actually work with

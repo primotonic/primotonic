@@ -1,16 +1,32 @@
 export const site = {
-  name: 'Primotech',
-  tagline: '@Primotech',
+  name: 'Primotonic',
+  tagline: '@Primotonic',
   description:
     'Full-stack engineering for web, apps, ops systems, and security — from idea to production — by a Philippines-based team.',
   url: 'https://primotonic.com',
   email: 'hello@primotonic.com',
+  locale: 'en_PH',
+  headline: 'Full-stack systems that actually run the work.',
+  keywords: [
+    'full-stack development',
+    'web development Philippines',
+    'mobile app development',
+    'web pentesting',
+    'ops systems',
+    'NestJS',
+    'React',
+    'iGaming',
+    'Primotonic',
+    'primotonic',
+  ],
   social: {
-    handle: '@Primotech',
+    handle: '@Primotonic',
+    twitter: '' as string, // e.g. '@Primotonic'
+    // LinkedIn / Facebook / GitHub URLs for schema.org sameAs + footer
+    profiles: [] as string[],
   },
   promise:
     'Full-stack web, mobile, and ops systems — plus pentesting — built end-to-end by a Philippines-based engineering team.',
-  headline: 'Full-stack systems that actually run the work.',
   ctaPrimary: 'Start a project',
   ctaSecondary: 'Our services',
 } as const

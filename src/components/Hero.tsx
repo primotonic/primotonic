@@ -60,7 +60,7 @@ export function Hero() {
             className="display-title mb-4 text-[clamp(2.35rem,5.2vw,3.75rem)] text-[var(--ink)]"
           >
             <span className="logo-wordmark block text-[clamp(1.9rem,4vw,2.85rem)] mb-3">
-              PRIMOTECH
+              PRIMOTONIC
             </span>
             {site.headline}
           </motion.h1>

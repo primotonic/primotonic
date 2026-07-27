@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ContactForm, InquiryForm } from '#/components/InquiryForm'
+import { Breadcrumbs } from '#/components/Breadcrumbs'
 import { site } from '#/content/site'
 import { pageHead } from '#/lib/seo'
 
@@ -8,8 +9,12 @@ export const Route = createFileRoute('/contact')({
     pageHead({
       title: 'Contact',
       description:
-        'Contact Primotech or start a project inquiry for web, mobile, support, or internal systems work.',
+        'Contact Primotonic or start a project inquiry for web, mobile, support, pentesting, or internal systems work.',
       path: '/contact',
+      breadcrumbs: [
+        { name: 'Home', path: '/' },
+        { name: 'Contact', path: '/contact' },
+      ],
     }),
   component: ContactPage,
 })
@@ -18,6 +23,13 @@ function ContactPage() {
   return (
     <main className="section-block">
       <div className="page-wrap px-4">
+        <Breadcrumbs
+          className="mb-5"
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Contact', path: '/contact' },
+          ]}
+        />
         <p className="section-kicker mb-3">Contact</p>
         <h1 className="display-title m-0 max-w-3xl text-[clamp(1.85rem,3.5vw,2.6rem)] font-bold text-[var(--ink)]">
           Tell us the problem first
