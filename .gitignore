@@ -14,3 +14,9 @@ todos.json
 
 # Local Netlify folder
 .netlify
+
+# Original client vulnerability reports (sensitive — use redacted PDF only)
+Journey Quest Exploit.docx
+Journey Quest Exploit.pdf
+Prepare Message XSS.docx
+Prepare Message XSS.pdf
