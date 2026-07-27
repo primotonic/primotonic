@@ -1,9 +1,15 @@
+import { caseStudies } from '#/content/case-studies'
+import { faqs } from '#/content/faqs'
+import { services } from '#/content/services'
 import { site } from '#/content/site'
+import { team } from '#/content/team'
 
 export type BreadcrumbItem = {
   name: string
   path: string
 }
+
+type JsonLd = Record<string, unknown>
 
 type PageSeo = {
   title: string
@@ -15,6 +21,10 @@ type PageSeo = {
   type?: 'website' | 'article' | 'profile'
   breadcrumbs?: BreadcrumbItem[]
   noIndex?: boolean
+  /** Extra JSON-LD graphs merged into page head scripts. */
+  jsonLd?: JsonLd[]
+  /** Skip default Organization / WebSite schemas (e.g. 404). */
+  skipSiteGraph?: boolean
 }
 
 const OG_IMAGE = '/og-image.png'
@@ -32,24 +42,39 @@ function pageUrl(path: string) {
   return path === '/' ? `${base}/` : `${base}${path}`
 }
 
-function jsonLdScript(data: Record<string, unknown>) {
+function jsonLdScript(data: JsonLd) {
   return {
     type: 'application/ld+json' as const,
     children: JSON.stringify(data),
   }
 }
 
-function organizationJsonLd() {
+function organizationId() {
+  return `${site.url.replace(/\/$/, '')}/#organization`
+}
+
+function websiteId() {
+  return `${site.url.replace(/\/$/, '')}/#website`
+}
+
+function organizationJsonLd(): JsonLd {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': ['Organization', 'ProfessionalService'],
+    '@id': organizationId(),
     name: site.name,
     legalName: site.name,
     url: site.url,
-    logo: absoluteUrl('/logo-face.png'),
+    logo: {
+      '@type': 'ImageObject',
+      url: absoluteUrl('/logo-face.png'),
+      width: 320,
+      height: 352,
+    },
     image: absoluteUrl(OG_IMAGE),
     description: site.description,
     email: site.email,
+    slogan: site.headline,
     foundingLocation: {
       '@type': 'Place',
       address: {
@@ -57,15 +82,51 @@ function organizationJsonLd() {
         addressCountry: 'PH',
       },
     },
-    areaServed: {
-      '@type': 'Country',
-      name: 'Philippines',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'PH',
     },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'sales',
-      email: site.email,
-      availableLanguage: ['English'],
+    areaServed: [
+      { '@type': 'Country', name: 'Philippines' },
+      { '@type': 'Place', name: 'Worldwide' },
+    ],
+    priceRange: '$$',
+    knowsAbout: [...site.knowsAbout],
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        email: site.email,
+        availableLanguage: ['English'],
+        url: pageUrl('/contact'),
+      },
+      {
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        email: site.email,
+        availableLanguage: ['English'],
+      },
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${site.name} services`,
+      itemListElement: services.map((service, index) => ({
+        '@type': 'OfferCatalog',
+        name: service.title,
+        position: index + 1,
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: service.title,
+              description: service.summary,
+              url: `${pageUrl('/services')}#${service.id}`,
+              provider: { '@id': organizationId() },
+            },
+          },
+        ],
+      })),
     },
     ...(site.social.profiles.length
       ? { sameAs: [...site.social.profiles] }
@@ -73,23 +134,20 @@ function organizationJsonLd() {
   }
 }
 
-function websiteJsonLd() {
+function websiteJsonLd(): JsonLd {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': websiteId(),
     name: site.name,
     url: site.url,
     description: site.description,
-    publisher: {
-      '@type': 'Organization',
-      name: site.name,
-      url: site.url,
-    },
     inLanguage: 'en-PH',
+    publisher: { '@id': organizationId() },
   }
 }
 
-function breadcrumbJsonLd(items: BreadcrumbItem[]) {
+function breadcrumbJsonLd(items: BreadcrumbItem[]): JsonLd {
   const trail =
     items[0]?.path === '/'
       ? items
@@ -107,6 +165,103 @@ function breadcrumbJsonLd(items: BreadcrumbItem[]) {
   }
 }
 
+export function faqPageJsonLd(items = faqs): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+}
+
+export function servicesItemListJsonLd(): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${site.name} services`,
+    description:
+      'Full-stack web development, mobile apps, technical support, and web pentesting.',
+    numberOfItems: services.length,
+    itemListElement: services.map((service, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: service.title,
+      url: `${pageUrl('/services')}#${service.id}`,
+      item: {
+        '@type': 'Service',
+        name: service.title,
+        description: service.summary,
+        provider: { '@id': organizationId() },
+      },
+    })),
+  }
+}
+
+export function workItemListJsonLd(): JsonLd {
+  const featured = caseStudies.filter((c) => c.featured)
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${site.name} case studies`,
+    description: 'Selected full-stack systems and confidential client work.',
+    numberOfItems: featured.length,
+    itemListElement: featured.map((study, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: study.title,
+      url: `${pageUrl('/work')}#${study.id}`,
+      item: {
+        '@type': 'CreativeWork',
+        name: study.title,
+        description: study.purpose,
+        about: study.clientContext,
+        keywords: study.stack.join(', '),
+        creator: { '@id': organizationId() },
+      },
+    })),
+  }
+}
+
+export function teamJsonLd(): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${site.name} team`,
+    numberOfItems: team.length,
+    itemListElement: team.map((member, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Person',
+        name: member.name,
+        jobTitle: member.role,
+        description: member.summary,
+        image: absoluteUrl(member.image),
+        url: member.portfolioUrl,
+        worksFor: { '@id': organizationId() },
+        knowsAbout: member.skills,
+      },
+    })),
+  }
+}
+
+export function contactPageJsonLd(): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: `Contact ${site.name}`,
+    url: pageUrl('/contact'),
+    description: `Contact ${site.name} for full-stack development, mobile apps, support, or web pentesting.`,
+    mainEntity: { '@id': organizationId() },
+  }
+}
+
 /**
  * Full page head: SEO, Open Graph (Facebook/LinkedIn), Twitter/X, JSON-LD.
  */
@@ -118,9 +273,13 @@ export function pageHead({
   type = 'website',
   breadcrumbs,
   noIndex = false,
+  jsonLd = [],
+  skipSiteGraph = false,
 }: PageSeo) {
   const fullTitle =
-    title === site.name ? `${site.name} · ${site.headline}` : `${title} · ${site.name}`
+    title === site.name
+      ? `${site.name} · Full-Stack Development & Web Pentesting Philippines`
+      : `${title} · ${site.name}`
   const shortTitle = title === site.name ? site.name : title
   const desc = description ?? site.description
   const url = pageUrl(path)
@@ -136,6 +295,14 @@ export function pageHead({
           { name: shortTitle, path },
         ])
 
+  const scripts = [
+    ...(!skipSiteGraph && !noIndex
+      ? [jsonLdScript(organizationJsonLd()), jsonLdScript(websiteJsonLd())]
+      : []),
+    jsonLdScript(breadcrumbJsonLd(crumbTrail)),
+    ...jsonLd.map(jsonLdScript),
+  ]
+
   return {
     meta: [
       { title: fullTitle },
@@ -149,11 +316,17 @@ export function pageHead({
       },
       {
         name: 'googlebot',
-        content: noIndex ? 'noindex, nofollow' : 'index, follow',
+        content: noIndex
+          ? 'noindex, nofollow'
+          : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
       },
+      { name: 'bingbot', content: noIndex ? 'noindex, nofollow' : 'index, follow' },
       { name: 'keywords', content: site.keywords.join(', ') },
       { name: 'geo.region', content: 'PH' },
       { name: 'geo.placename', content: 'Philippines' },
+      { name: 'language', content: 'en-PH' },
+      { name: 'rating', content: 'general' },
+      { name: 'category', content: 'technology' },
 
       // Open Graph — Facebook, LinkedIn, Slack, Discord, etc.
       { property: 'og:title', content: fullTitle },
@@ -188,13 +361,10 @@ export function pageHead({
     links: [
       { rel: 'canonical', href: url },
       { rel: 'alternate', hrefLang: 'en', href: url },
+      { rel: 'alternate', hrefLang: 'en-PH', href: url },
       { rel: 'alternate', hrefLang: 'x-default', href: url },
     ],
-    scripts: [
-      jsonLdScript(organizationJsonLd()),
-      jsonLdScript(websiteJsonLd()),
-      jsonLdScript(breadcrumbJsonLd(crumbTrail)),
-    ],
+    scripts,
   }
 }
 

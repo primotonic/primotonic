@@ -1,19 +1,20 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { services } from '#/content/services'
 import { Breadcrumbs } from '#/components/Breadcrumbs'
-import { pageHead } from '#/lib/seo'
+import { pageHead, servicesItemListJsonLd } from '#/lib/seo'
 
 export const Route = createFileRoute('/services')({
   head: () =>
     pageHead({
-      title: 'Services',
+      title: 'Full-Stack Web, Mobile & Pentesting Services',
       description:
-        'Web development, mobile apps, technical support, and web pentesting from Primotonic — plus internal systems that replace costly tools.',
+        'Hire Primotonic for full-stack web development, mobile apps, technical support, and web pentesting in the Philippines — plus internal systems that replace costly SaaS tools.',
       path: '/services',
       breadcrumbs: [
         { name: 'Home', path: '/' },
         { name: 'Services', path: '/services' },
       ],
+      jsonLd: [servicesItemListJsonLd()],
     }),
   component: ServicesPage,
 })
@@ -42,7 +43,8 @@ function ServicesPage() {
           {services.map((service, index) => (
             <article
               key={service.id}
-              className={`service-block rise-in ${index % 2 === 1 ? 'service-block-offset' : ''}`}
+              id={service.id}
+              className={`service-block rise-in scroll-mt-24 ${index % 2 === 1 ? 'service-block-offset' : ''}`}
               style={{ animationDelay: `${index * 80}ms` }}
             >
               <div className="service-block-accent" aria-hidden="true" />

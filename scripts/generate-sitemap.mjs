@@ -64,6 +64,13 @@ ${urls}
 const robots = `User-agent: *
 Allow: /
 
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Host: ${base}
 Sitemap: ${base}/sitemap.xml
 `
 

@@ -1,20 +1,22 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ContactForm, InquiryForm } from '#/components/InquiryForm'
 import { Breadcrumbs } from '#/components/Breadcrumbs'
+import { FaqSection } from '#/components/FaqSection'
 import { site } from '#/content/site'
-import { pageHead } from '#/lib/seo'
+import { contactPageJsonLd, faqPageJsonLd, pageHead } from '#/lib/seo'
 
 export const Route = createFileRoute('/contact')({
   head: () =>
     pageHead({
-      title: 'Contact',
+      title: 'Contact & Start a Project',
       description:
-        'Contact Primotonic or start a project inquiry for web, mobile, support, pentesting, or internal systems work.',
+        'Contact Primotonic at hello@primotonic.com or start a project inquiry for full-stack web, mobile, support, pentesting, or internal systems work.',
       path: '/contact',
       breadcrumbs: [
         { name: 'Home', path: '/' },
         { name: 'Contact', path: '/contact' },
       ],
+      jsonLd: [contactPageJsonLd(), faqPageJsonLd()],
     }),
   component: ContactPage,
 })
@@ -74,6 +76,10 @@ function ContactPage() {
               <p className="m-0 font-semibold text-[var(--ink)]">{site.social.handle}</p>
             </div>
           </section>
+        </div>
+
+        <div className="mt-14 border-t border-[var(--line)] pt-10">
+          <FaqSection title="Before you reach out" />
         </div>
       </div>
     </main>
