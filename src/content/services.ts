@@ -33,6 +33,19 @@ export const services: Service[] = [
       'Integration with your existing web and backend systems',
     ],
   },
+ {
+    id: 'game-dev',
+    title: 'Game Development',
+    summary:
+      'Games built for any platform — mobile, desktop, web, or beyond — from concept to launch, with engaging mechanics backed by clean, maintainable code.',
+    details:
+      'From lightweight browser arcade titles to full desktop and mobile releases: design, core mechanics, UI/UX, and performance tuning, delivered as polished builds tailored to wherever your players are.',
+    outcomes: [
+      'Playable prototypes that validate mechanics fast',
+      'Cross-platform builds for mobile, desktop, and web from a single codebase',
+      'Monetization-ready releases with integrated ad support',
+    ],
+  },
   {
     id: 'support',
     title: 'Technical Support',
