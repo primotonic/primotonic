@@ -7,7 +7,8 @@ import { TeamPreview } from '#/components/TeamPreview'
 import { InquiryBand } from '#/components/InquiryBand'
 import { SectionIntro } from '#/components/SectionIntro'
 import { FadeInView } from '#/components/motion'
-import { pageHead } from '#/lib/seo'
+import { FaqSection } from '#/components/FaqSection'
+import { faqPageJsonLd, pageHead } from '#/lib/seo'
 import { site } from '#/content/site'
 
 export const Route = createFileRoute('/')({
@@ -17,6 +18,7 @@ export const Route = createFileRoute('/')({
       description: site.description,
       path: '/',
       breadcrumbs: [{ name: 'Home', path: '/' }],
+      jsonLd: [faqPageJsonLd()],
     }),
   component: HomePage,
 })
@@ -75,6 +77,12 @@ function HomePage() {
               Meet the team
             </Link>
           </FadeInView>
+        </div>
+      </section>
+
+      <section className="section-block border-t border-[var(--line)] bg-white/30 backdrop-blur-sm">
+        <div className="page-wrap px-4">
+          <FaqSection />
         </div>
       </section>
 

@@ -12,6 +12,8 @@
     "dev": "vite dev --port 3000",
     "generate-routes": "tsr generate",
     "sitemap": "node scripts/generate-sitemap.mjs",
+    "fiverr:video": "python3 scripts/generate-fiverr-video.py",
+    "fiverr:vuln-pdf": "python3 scripts/generate-redacted-vuln-pdf.py",
     "prebuild": "npm run sitemap",
     "build": "vite build",
     "preview": "vite preview",

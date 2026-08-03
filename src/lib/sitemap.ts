@@ -65,6 +65,13 @@ export function buildRobotsTxt(host = site.url): string {
   return `User-agent: *
 Allow: /
 
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Host: ${base}
 Sitemap: ${base}/sitemap.xml
 `
 }

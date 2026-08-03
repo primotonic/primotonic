@@ -1,19 +1,20 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { team } from '#/content/team'
 import { Breadcrumbs } from '#/components/Breadcrumbs'
-import { pageHead } from '#/lib/seo'
+import { pageHead, teamJsonLd } from '#/lib/seo'
 
 export const Route = createFileRoute('/team')({
   head: () =>
     pageHead({
-      title: 'Team',
+      title: 'Philippines Full-Stack Engineering Team',
       description:
-        'Meet the Primotonic team — Melquizedek Felix, Von Aralar, and Rojhon Buenaventura. Philippines-based full-stack engineers.',
+        'Meet Primotonic: Melquizedek Felix (Rails/React), Von Aralar (NestJS & security), and Rojhon Buenaventura (web & games) — Philippines-based full-stack engineers.',
       path: '/team',
       breadcrumbs: [
         { name: 'Home', path: '/' },
         { name: 'Team', path: '/team' },
       ],
+      jsonLd: [teamJsonLd()],
     }),
   component: TeamPage,
 })

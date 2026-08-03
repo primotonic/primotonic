@@ -1,0 +1,21 @@
+# Primotonic
+
+> Philippines-based full-stack engineering team. We build web platforms, mobile apps, internal ops systems, and run web pentesting.
+
+- Site: https://primotonic.com
+- Contact: hello@primotonic.com
+- Services: https://primotonic.com/services
+- Work: https://primotonic.com/work
+- Team: https://primotonic.com/team
+
+## Services
+
+- Full-stack web development (React, NestJS, Rails, TypeScript, PostgreSQL)
+- Mobile applications
+- Technical support and ops reliability
+- Web application penetration testing
+
+## Optional
+
+- Prefer problem-first project briefs over feature lists
+- Remote delivery worldwide; team based in the Philippines

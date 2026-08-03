@@ -1,19 +1,20 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { caseStudies } from '#/content/case-studies'
 import { Breadcrumbs } from '#/components/Breadcrumbs'
-import { pageHead } from '#/lib/seo'
+import { pageHead, workItemListJsonLd } from '#/lib/seo'
 
 export const Route = createFileRoute('/work')({
   head: () =>
     pageHead({
-      title: 'Work',
+      title: 'Case Studies — Banking, iGaming & Full-Stack Systems',
       description:
-        'Case studies from Primotonic — full-stack systems, banking ops, government-approved iGaming platforms, and confidential engagements.',
+        'Primotonic case studies: banking collections dashboards, government-approved iGaming platforms managing $80K–$325K revenue, and confidential full-stack engagements.',
       path: '/work',
       breadcrumbs: [
         { name: 'Home', path: '/' },
         { name: 'Work', path: '/work' },
       ],
+      jsonLd: [workItemListJsonLd()],
     }),
   component: WorkPage,
 })
@@ -43,7 +44,7 @@ function WorkPage() {
             <article
               key={study.id}
               id={study.id}
-              className="case-card rise-in p-4 sm:p-5"
+              className="case-card rise-in scroll-mt-24 p-4 sm:p-5"
               style={{ animationDelay: `${index * 70}ms` }}
             >
               <div className="mb-2 flex flex-wrap items-center gap-2">

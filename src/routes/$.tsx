@@ -8,6 +8,7 @@ export const Route = createFileRoute('/$')({
       description: 'This page does not exist on Primotonic.',
       path: '/404',
       noIndex: true,
+      skipSiteGraph: true,
       breadcrumbs: [
         { name: 'Home', path: '/' },
         { name: 'Not found', path: '/404' },

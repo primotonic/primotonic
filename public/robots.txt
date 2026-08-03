@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Host: https://primotonic.com
 Sitemap: https://primotonic.com/sitemap.xml
