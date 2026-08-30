@@ -5,6 +5,8 @@ export const site = {
     'Philippines-based full-stack software development company — custom web platforms, mobile apps, internal ops systems, NestJS/React builds, and web pentesting from idea to production.',
   url: 'https://primotonic.com',
   email: 'hello@primotonic.com',
+  /** Google Analytics 4 measurement ID */
+  analyticsId: 'G-43CBN82Q0C',
   locale: 'en_PH',
   headline: 'Full-stack systems that actually run the work.',
   keywords: [

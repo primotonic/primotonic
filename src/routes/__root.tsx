@@ -31,12 +31,25 @@ export const Route = createRootRoute({
         crossOrigin: 'anonymous',
       },
       { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' },
+      { rel: 'dns-prefetch', href: 'https://www.googletagmanager.com' },
       { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
       { rel: 'icon', href: '/logo-face.png', type: 'image/png', sizes: 'any' },
       { rel: 'apple-touch-icon', href: '/logo-face.png' },
       { rel: 'manifest', href: '/site.webmanifest' },
       { rel: 'mask-icon', href: '/logo-face.svg', color: '#FF6A00' },
       { rel: 'me', href: `mailto:${site.email}` },
+    ],
+    scripts: [
+      {
+        async: true,
+        src: `https://www.googletagmanager.com/gtag/js?id=${site.analyticsId}`,
+      },
+      {
+        children: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${site.analyticsId}');`,
+      },
     ],
   }),
   shellComponent: RootDocument,
