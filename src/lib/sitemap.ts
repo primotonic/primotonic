@@ -26,10 +26,11 @@ const defaults: Omit<SitemapEntry, 'path'> = {
 const overrides: Record<string, Partial<Omit<SitemapEntry, 'path'>>> = {
   '/': { priority: 1, changefreq: 'weekly' },
   '/team': { priority: 0.8 },
+  '/privacy-policy': { priority: 0.3, changefreq: 'yearly' },
 }
 
 export function getSitemapEntries(): SitemapEntry[] {
-  return nav.map(({ to }) => ({
+  return [...nav, { to: '/privacy-policy' }].map(({ to }) => ({
     path: to,
     ...defaults,
     ...overrides[to],

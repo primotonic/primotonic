@@ -77,6 +77,12 @@ export default function Footer() {
         <p className="m-0">
           &copy; {year} {site.name}. All rights reserved.
         </p>
+        <Link
+          to="/privacy-policy"
+          className="font-semibold text-[var(--ink)] underline underline-offset-4 hover:text-[var(--brand-primary)]"
+        >
+          Privacy Policy
+        </Link>
         <p className="m-0">Philippines-based engineering team</p>
       </div>
     </footer>

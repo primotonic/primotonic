@@ -37,7 +37,10 @@ if (!paths.length) {
 const overrides = {
   '/': { priority: 1.0, changefreq: 'weekly' },
   '/team': { priority: 0.8, changefreq: 'monthly' },
+  '/privacy-policy': { priority: 0.3, changefreq: 'yearly' },
 }
+
+paths.push('/privacy-policy')
 
 const base = siteUrl.replace(/\/$/, '')
 const lastmod = new Date().toISOString().slice(0, 10)

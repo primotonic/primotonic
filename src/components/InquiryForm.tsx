@@ -1,4 +1,6 @@
-import { useState, type FormEvent, type ReactNode } from 'react'
+import { useState } from 'react'
+import type { FormEvent, ReactNode } from 'react'
+import { Link } from '@tanstack/react-router'
 import {
   budgetOptions,
   serviceOptions,
@@ -36,7 +38,7 @@ export function InquiryForm() {
   )
   const [error, setError] = useState('')
 
-  function update<K extends keyof InquiryState>(key: K, value: InquiryState[K]) {
+  function update<TKey extends keyof InquiryState>(key: TKey, value: InquiryState[TKey]) {
     setData((prev) => ({ ...prev, [key]: value }))
   }
 
@@ -254,6 +256,7 @@ export function InquiryForm() {
           </div>
         </form>
       ) : null}
+      <PrivacyNotice />
     </div>
   )
 }
@@ -344,7 +347,25 @@ export function ContactForm() {
       >
         {status === 'submitting' ? 'Sending…' : 'Send message'}
       </button>
+      <PrivacyNotice />
     </form>
+  )
+}
+
+function PrivacyNotice() {
+  return (
+    <p className="mt-4 mb-0 text-xs leading-relaxed text-[var(--ink-soft)]">
+      Read our{' '}
+      <Link
+        to="/privacy-policy"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-semibold text-[var(--ink)] underline underline-offset-4 hover:text-[var(--brand-primary)]"
+      >
+        Privacy Policy (opens in a new tab)
+      </Link>{' '}
+      to learn how we handle the information you submit.
+    </p>
   )
 }
 
